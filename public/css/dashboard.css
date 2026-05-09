@@ -1,0 +1,37 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+.cards .card {
+    text-align: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+}
+
+.cards .card i {
+    font-size: 2.3rem;
+    color: var(--color-primary);
+}
+
+.cards .card h2 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: var(--color-accent);
+}
+
+.cards .card p {
+    color: var(--color-text-soft);
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}

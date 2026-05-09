@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga de Béisbol Infantil - Jugadores</title>
+    
+    <link rel="stylesheet" href="public/css/base.css">
+    <link rel="stylesheet" href="public/css/layout.css">
+    <link rel="stylesheet" href="public/css/sidebar.css">
+    <link rel="stylesheet" href="public/css/components.css">
+    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/equipos.css">
+    <link rel="stylesheet" href="public/css/jugadores.css">
+    <link rel="stylesheet" href="public/css/partidos.css">
+    <link rel="stylesheet" href="public/css/campo.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <i class="fas fa-baseball-bat-ball"></i>
+            <span>Gestor de la Liga de Béisbol Infantil</span>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="equipos.html"><i class="fas fa-users"></i> Equipos</a></li>
+            <li class="active">
+                <a href="jugadores.html"><i class="fas fa-user-friends"></i> Jugadores</a>
+            </li>
+            <li><a href="partidos.html"><i class="fas fa-calendar-alt"></i> Partidos</a></li>
+            <li><a href="campo.html"><i class="fas fa-map-marker-alt"></i> Campos</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h2>Gestión de Jugadores</h2>
+
+        <div class="container form-section">
+            <header class="content-header">
+                <h3 class="titulo-azul"><i class="fas fa-user-plus"></i> Registrar Nuevo Jugador</h3>
+            </header>
+            
+            <form id="playerForm" class="horizontal-form">
+                <div class="form-group">
+                    <label for="firstName">Nombre:</label>
+                    <input type="text" id="firstName" placeholder="Ej. Juan" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Apellido:</label>
+                    <input type="text" id="lastName" placeholder="Ej. Pérez" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Fecha de Nacimiento:</label>
+                    <input type="date" id="dob" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="teamSelect">Equipo:</label>
+                    <select id="teamSelect" required>
+                        <option value="">Selecciona un equipo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="medicalNotes">Notas Médicas:</label>
+                    <textarea id="medicalNotes" placeholder="Alergias, medicamentos, observaciones..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-save"></i> Guardar Jugador
+                </button>
+            </form>
+        </div>
+
+        <div class="container table-section">
+            <header class="content-header">
+                <h3 class="titulo-azul"><i class="fas fa-users"></i> Jugadores Registrados</h3>
+            </header>
+
+            <div class="table-controls">
+                <div class="search-box">
+                    <i class="fas fa-search lupa-azul"></i>
+                    <input type="text" id="playerSearch" placeholder="Buscar por nombre o equipo...">
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="playersTable">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Fecha de Nacimiento</th>
+                            <th>Equipo</th>
+                            <th>Notas Médicas</th> <th>Estatus</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="playerTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="modalEditarJugador" class="modal">
+            <div class="modal-content">
+                <h3>Editar Jugador</h3>
+                
+                <input type="hidden" id="editJugadorId">
+                
+                <div class="modal-grid">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="editNombre" placeholder="Nombre">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Apellido</label>
+                        <input type="text" id="editApellido" placeholder="Apellido">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Fecha de Nacimiento</label>
+                        <input type="date" id="editDOB">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Equipo</label>
+                        <select id="editEquipoSelect"></select>
+                    </div>
+                    
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Notas Médicas</label>
+                        <textarea id="editNotas" placeholder="Notas Médicas"></textarea>
+                    </div>
+                </div>
+                
+                <div class="modal-buttons">
+                    <button type="button" id="btnGuardarEdicion" class="btn-primary">Guardar cambios</button>
+                    <button type="button" class="btn-cancel" onclick="cerrarModalEditar()">Cancelar</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="modalNotas" class="modal">
+            <div class="modal-content">
+                <h3>Notas Médicas del Jugador</h3>
+                <div style="margin: 20px 0; padding: 15px; background: #f9f9f9; border-radius: 5px; min-height: 80px;">
+                    <p id="infoNotas"></p>
+                </div>
+                <button class="btn-cancel" onclick="cerrarModalNotas()">Cerrar</button>
+            </div>
+        </div>
+
+        
+    </main>
+
+</div> <script src="public/js/config.js"></script>
+<script src="public/js/jugadores.js"></script>
+</body>
+</html>
+

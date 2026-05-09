@@ -1,0 +1,249 @@
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 0.9rem 1rem;
+    background: #ffffff;
+    color: var(--color-text);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(23, 58, 120, 0.12);
+}
+
+.horizontal-form,
+.grid-form,
+.modal-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.horizontal-form {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    align-items: end;
+}
+
+.grid-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.form-actions {
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.btn-primary,
+.btn-register,
+.btn-cancel,
+.btn-edit,
+.btn-delete {
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    transition: transform 0.15s ease, opacity 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary,
+.btn-register {
+    background: var(--color-accent);
+    color: #ffffff;
+    padding: 0.95rem 1.35rem;
+}
+
+.btn-primary:hover,
+.btn-register:hover {
+    background: var(--color-accent-dark);
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    background: #e5e7eb;
+    color: var(--color-text);
+    padding: 0.95rem 1.35rem;
+}
+
+.btn-cancel:hover {
+    background: #d6d9df;
+}
+
+.btn-edit,
+.btn-delete {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.35rem;
+    color: #ffffff;
+}
+
+.btn-edit {
+    background: var(--color-primary);
+}
+
+.btn-edit:hover {
+    background: var(--color-primary-dark);
+}
+
+.btn-delete {
+    background: var(--color-danger);
+}
+
+.btn-delete:hover {
+    background: var(--color-danger-dark);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+thead {
+    background: var(--color-primary);
+    color: #ffffff;
+}
+
+th,
+td {
+    padding: 1rem 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+}
+
+tbody tr {
+    background: #ffffff;
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+.status-badge,
+.estado {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-badge,
+.estado.programado {
+    background: rgba(63, 111, 46, 0.12);
+    color: var(--color-success);
+}
+
+.estado.finalizado {
+    background: rgba(23, 58, 120, 0.12);
+    color: var(--color-primary);
+}
+
+.table-controls {
+    margin-bottom: 1rem;
+}
+
+.search-box {
+    position: relative;
+    max-width: 420px;
+}
+
+.search-box input {
+    padding-left: 2.8rem;
+}
+
+.search-box i,
+.lupa-azul {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    color: var(--color-primary);
+    pointer-events: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 2000;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: min(720px, 100%);
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+}
+
+.modal-content h3 {
+    color: var(--color-primary);
+    margin-bottom: 1.2rem;
+}
+
+.modal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+}
+
+@media (max-width: 768px) {
+    .grid-form,
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .horizontal-form {
+        grid-template-columns: 1fr;
+    }
+
+    th,
+    td {
+        padding: 0.85rem 0.7rem;
+    }
+}

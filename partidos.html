@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga de Béisbol Infantil - Partidos</title>
+    
+    <link rel="stylesheet" href="public/css/base.css">
+    <link rel="stylesheet" href="public/css/layout.css">
+    <link rel="stylesheet" href="public/css/sidebar.css">
+    <link rel="stylesheet" href="public/css/components.css">
+    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/equipos.css">
+    <link rel="stylesheet" href="public/css/jugadores.css">
+    <link rel="stylesheet" href="public/css/partidos.css">
+    <link rel="stylesheet" href="public/css/campo.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <i class="fas fa-baseball-bat-ball"></i>
+            <span>Gestor de la Liga de Béisbol Infantil</span>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="equipos.html"><i class="fas fa-users"></i> Equipos</a></li>
+            <li><a href="jugadores.html"><i class="fas fa-user-friends"></i> Jugadores</a></li>
+            <li class="active">
+                <a href="partidos.html"><i class="fas fa-calendar-alt"></i> Partidos</a>
+            </li>
+            <li><a href="campo.html"><i class="fas fa-map-marker-alt"></i> Campos</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h2>Gestión de Partidos</h2>
+
+<div class="form-card">
+    <div class="card-header">
+        <h3>Calendario de Juegos</h3>
+        <button class="btn-primary" onclick="abrirModalCrear()">
+            <i class="fas fa-plus"></i> Programar Partido
+        </button>
+    </div>
+
+    <table id="teamsTable">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Ampáyers</th> <th>Equipo Local</th>
+                <th></th>
+                <th>Equipo Visitante</th>
+                <th>Marcador</th>
+                <th>Campo</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="playerTableBody"></tbody>
+    </table>
+</div>
+
+<div id="modalCrear" class="modal">
+    <div class="modal-content">
+        <h3>Programar Partido</h3>
+        <div class="modal-grid">
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="datetime-local" id="crearFecha">
+            </div>
+            <div class="form-group"><label>Equipo Local</label><select id="crearLocal"><option value="">Seleccione...</option></select></div>
+            <div class="form-group"><label>Equipo Visitante</label><select id="crearVisitante"><option value="">Seleccione...</option></select></div>
+            <div class="form-group"><label>Campo</label><select id="crearCampo"><option value="">Seleccione...</option></select></div>
+            
+            <div class="form-group"><label>Ampáyer Home</label><select id="crearPrincipal"><option value="">Seleccione...</option></select></div>
+            <div class="form-group"><label>Ampáyer 1B</label><select id="crearCentral"><option value="">Seleccione...</option></select></div>
+            <div class="form-group"><label>Ampáyer 2B</label><select id="crearLineal1"><option value="">Seleccione...</option></select></div>
+            <div class="form-group"><label>Ampáyer 3B</label><select id="crearLineal2"><option value="">Seleccione...</option></select></div>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-primary" onclick="crearPartido()">Programar</button>
+            <button class="btn-cancel" onclick="cerrarModalCrear()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalEditar" class="modal">
+    <div class="modal-content">
+        <h3>Editar Partido</h3>
+        <input type="hidden" id="editPartidoId">
+        <div class="modal-grid">
+            <div class="form-group"><label>Fecha</label><input type="datetime-local" id="editFecha"></div>
+            <div class="form-group">
+                <label>Estado</label>
+                <select id="editEstado">
+                    <option>Programado</option><option>En juego</option><option>Finalizado</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Equipo Local</label><select id="editLocal"></select></div>
+            <div class="form-group"><label>Equipo Visitante</label><select id="editVisitante"></select></div>
+            <div class="form-group"><label>Marcador Local</label><input type="number" id="editMarcadorLocal"></div>
+            <div class="form-group"><label>Marcador Visitante</label><input type="number" id="editMarcadorVisitante"></div>
+            <div class="form-group"><label>Campo</label><select id="editCampo"></select></div>
+            
+            <div class="form-group"><label>Ampáyer Home</label><select id="editPrincipal"></select></div>
+            <div class="form-group"><label>Ampáyer 1B</label><select id="editCentral"></select></div>
+            <div class="form-group"><label>Ampáyer 2B</label><select id="editLineal1"></select></div>
+            <div class="form-group"><label>Ampáyer 3B</label><select id="editLineal2"></select></div>
+        </div>
+        <div class="modal-buttons">
+            <button class="btn-primary" id="btnGuardarEdicion">Guardar</button>
+            <button class="btn-cancel" onclick="cerrarModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalAmpayers" class="modal">
+    <div class="modal-content">
+        <h3>Ampáyers del Encuentro</h3>
+        <p id="infoAmpayers"></p>
+        <button class="btn-cancel" onclick="cerrarModalAmpayers()">Cerrar</button>
+    </div>
+</div>
+</main>
+
+</div> <script src="public/js/config.js"></script>
+<script src="public/js/partidos.js"></script>
+</body>
+</html>
+
+

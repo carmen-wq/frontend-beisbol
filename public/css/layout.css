@@ -1,0 +1,95 @@
+.top-bar {
+    height: var(--topbar-height);
+    background: var(--color-primary);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.logo i {
+    font-size: 1.8rem;
+}
+
+.main-container {
+    display: flex;
+    min-height: calc(100vh - var(--topbar-height));
+}
+
+.content {
+    flex: 1;
+    background: var(--color-accent);
+    padding: 2rem;
+    overflow-x: auto;
+}
+
+.content > * + * {
+    margin-top: 1.5rem;
+}
+
+.container,
+.form-card,
+.card,
+.table-section,
+.form-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+}
+
+.container,
+.form-section,
+.table-section,
+.form-card {
+    padding: 1.75rem;
+}
+
+.card {
+    padding: 1.5rem;
+}
+
+.card-header {
+    margin-bottom: 1.25rem;
+}
+
+.content-header {
+    margin-bottom: 1.25rem;
+}
+
+.content-header h1 {
+    font-size: 1.55rem;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .content {
+        padding: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+}

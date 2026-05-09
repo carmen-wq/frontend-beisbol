@@ -1,0 +1,49 @@
+#modulo-jugadores {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#modulo-jugadores .card:first-child {
+    padding: 1.75rem;
+}
+
+#modulo-jugadores .card-header h3 {
+    font-size: 1.45rem;
+}
+
+#playerForm.grid-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.2rem 1.5rem;
+}
+
+#playerForm .form-group:nth-child(5) {
+    grid-column: 1 / -1;
+}
+
+#playerForm .form-actions {
+    margin-top: 0.5rem;
+}
+
+#playerForm .btn-register {
+    width: 100%;
+    max-width: none;
+    min-height: 56px;
+    font-size: 1.15rem;
+    border-radius: 12px;
+}
+
+#playerForm textarea,
+#playerForm .medical-notes {
+    min-height: 140px;
+}
+
+#playerTableBody td {
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    #playerForm.grid-form {
+        grid-template-columns: 1fr;
+    }
+}

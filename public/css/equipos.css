@@ -1,0 +1,17 @@
+.form-section {
+    margin-bottom: 1.5rem;
+}
+
+.table-section .content-header h1 {
+    margin-bottom: 0.25rem;
+}
+
+#teamForm button {
+    min-height: 50px;
+    align-self: stretch;
+}
+
+#teamsTable td:last-child,
+#teamsTable th:last-child {
+    width: 130px;
+}

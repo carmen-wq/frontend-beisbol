@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liga de Béisbol Infantil - Dashboard</title>
+    
+    <link rel="stylesheet" href="public/css/base.css">
+    <link rel="stylesheet" href="public/css/layout.css">
+    <link rel="stylesheet" href="public/css/sidebar.css">
+    <link rel="stylesheet" href="public/css/components.css">
+    <link rel="stylesheet" href="public/css/dashboard.css">
+    <link rel="stylesheet" href="public/css/equipos.css">
+    <link rel="stylesheet" href="public/css/jugadores.css">
+    <link rel="stylesheet" href="public/css/partidos.css">
+    <link rel="stylesheet" href="public/css/campo.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">
+            <i class="fas fa-baseball-bat-ball"></i>
+            <span>Gestor de la Liga de Béisbol Infantil</span>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="active">
+                <a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a>
+            </li>
+            <li><a href="equipos.html"><i class="fas fa-users"></i> Equipos</a></li>
+            <li><a href="jugadores.html"><i class="fas fa-user-friends"></i> Jugadores</a></li>
+            <li><a href="partidos.html"><i class="fas fa-calendar-alt"></i> Partidos</a></li>
+            <li><a href="campo.html"><i class="fas fa-map-marker-alt"></i> Campos</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <h2>📅 Próximos Partidos</h2>
+        <table class="tabla-partidos">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Local</th>
+                    <th>Visitante</th>
+                    <th>Hora</th>
+                    <th>Campo</th>
+                </tr>
+            </thead>
+            <tbody id="tablaPartidos"></tbody>
+        </table>
+        
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-users"></i>
+                <h2 id="equiposTotal">0</h2>
+                <p>Equipos registrados</p>
+            </div>
+            
+            <div class="card">
+                <i class="fas fa-user-friends"></i>
+                <h2 id="jugadoresTotal">0</h2>
+                <p>Jugadores registrados</p>
+            </div>
+            
+            <div class="card">
+                <i class="fas fa-calendar-alt"></i>
+                <h2 id="partidosTotal">0</h2>
+                <p>Próximos partidos</p>
+            </div>
+        </div>
+    </main>
+
+</div> <script src="public/js/config.js"></script>
+<script src="public/js/dashboard.js"></script>
+</body>
+</html>
+
+  
