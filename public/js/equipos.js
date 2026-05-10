@@ -21,13 +21,13 @@ function cerrarModalEditar() {
   modalEditar.classList.remove("show");
 }
 
+
 // Cargar equipos
 async function cargarEquipos() {
   try {
     const res = await fetch('https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/equipos');
     const data = await res.json();
-
-    console.log("Respuesta /equipos:", data);
+    const listaEquipos = data.equipos;
 
     teamsBody.innerHTML = "";
 
@@ -40,7 +40,7 @@ async function cargarEquipos() {
       return;
     }
 
-    if (!Array.isArray(data)) {
+    if (!Array.isArray(listaEquipos)) {
       console.error("La respuesta no es un arreglo:", data);
       teamsBody.innerHTML = `
         <tr>
@@ -50,7 +50,7 @@ async function cargarEquipos() {
       return;
     }
 
-    if (data.length === 0) {
+    if (listaEquipos.length === 0) {
       teamsBody.innerHTML = `
         <tr>
           <td colspan="4">No hay equipos registrados.</td>
@@ -59,7 +59,7 @@ async function cargarEquipos() {
       return;
     }
 
-    data.forEach((equipo) => {
+    listaEquipos.forEach((equipo) => {
       const categoriaTexto = equipo.categoria || `Categoría ${equipo.id_categoria}`;
 
       const fila = document.createElement("tr");
@@ -102,7 +102,6 @@ async function cargarCategorias() {
   try {
     const res = await fetch('https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/categorias');
     const categorias = await res.json();
-
     console.log("Respuesta /categorias:", categorias);
 
     teamCategorySelect.innerHTML = `<option value="">Selecciona una categoría</option>`;
@@ -210,7 +209,8 @@ btnGuardarEdicion.addEventListener("click", async () => {
   };
 
   try {
-    const res = await fetch('https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/equipos/' + id, {
+    const res = await fetch('https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/equipos/' + id, 
+      {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
