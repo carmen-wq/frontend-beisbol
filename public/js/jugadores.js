@@ -44,20 +44,21 @@ async function cargarEquipos() {
   try {
     const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/equipos");
     const data = await res.json();
-    
-    console.log("Respuesta /equipos (en jugadores):", data);
+
+    const listaEquipos = data.equipos; // Aseguramos que accedemos a la propiedad correcta
+    console.log("Respuesta /equipos (en jugadores):", listaEquipos);
 
     teamSelect.innerHTML = `<option value="">Selecciona un equipo</option>`;
     editEquipoSelect.innerHTML = `<option value="">Selecciona un equipo</option>`;
     equiposMap = {};
 
-    if (!res.ok || !Array.isArray(data)) {
+    if (!res.ok || !Array.isArray(listaEquipos)) {
       teamSelect.innerHTML = `<option value="">Error al cargar equipos</option>`;
       editEquipoSelect.innerHTML = `<option value="">Error al cargar equipos</option>`;
       return;
     }
 
-    data.forEach((equipo) => {
+    listaEquipos.forEach((equipo) => {
       equiposMap[equipo.id] = equipo.nombre; // Para mapear id_equipo -> nombre
       
       const opt1 = document.createElement("option");
@@ -82,7 +83,8 @@ async function cargarJugadores() {
     const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/jugadores");
     const data = await res.json();
 
-    console.log("Respuesta /jugadores:", data);
+    const listaJugadores = data.jugadores; // Aseguramos que accedemos a la propiedad correcta
+    console.log("Respuesta /jugadores:", listaJugadores);
 
     playerTableBody.innerHTML = "";
 
@@ -92,18 +94,18 @@ async function cargarJugadores() {
       return;
     }
 
-    if (!Array.isArray(data)) {
-      console.error("La respuesta no es un arreglo:", data);
+    if (!Array.isArray(listaJugadores)) {
+      console.error("La respuesta no es un arreglo:", listaJugadores);
       playerTableBody.innerHTML = `<tr><td colspan="7">La API no devolvió una lista válida.</td></tr>`;
       return;
     }
 
-    if (data.length === 0) {
+    if (listaJugadores.length === 0) {
       playerTableBody.innerHTML = `<tr><td colspan="7">No hay jugadores registrados.</td></tr>`;
       return;
     }
 
-    data.forEach((jugador) => {
+    listaJugadores.forEach((jugador) => {
       const nombreEquipo = equiposMap[jugador.id_equipo] || `Equipo ${jugador.id_equipo}`;
       
       const dobFormatted = formatDate(jugador.fecha_nacimiento);
