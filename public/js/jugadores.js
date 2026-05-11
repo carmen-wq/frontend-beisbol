@@ -80,6 +80,8 @@ async function cargarEquipos() {
 // Cargar jugadores
 async function cargarJugadores() {
   try {
+    const playerTableBody = document.getElementById("playerTableBody");
+    
     const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/jugadores");
     const data = await res.json();
 
