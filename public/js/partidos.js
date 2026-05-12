@@ -42,9 +42,10 @@ async function llenarCatalogos() {
         const dataEquipos = await resE.json();
         const dataUmpires = await resU.json();
         const dataLocaciones = await resL.json();
-        const equipos = await resE.json();
-        const umpires = await resU.json();
-        const locaciones = await resL.json();
+
+        const equipos = dataEquipos.equipos;
+        const umpires = dataUmpires;
+        const locaciones = dataLocaciones;
 
         // Validar que sean Arrays
         if (!Array.isArray(equipos) || !Array.isArray(umpires) || !Array.isArray(locaciones)) {
