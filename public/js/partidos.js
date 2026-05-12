@@ -107,10 +107,11 @@ async function obtenerPartidos() {
             return;
         }
 
-        const partidos = await res.json();
+        const data = await res.json();
+        const partidos = data.partidos;
 
         if (!Array.isArray(partidos)) {
-            console.error("La respuesta no es un arreglo:", partidos);
+            console.error("La respuesta no es un arreglo:", data);
             playerTableBody.innerHTML = `
                 <tr>
                     <td colspan="8">La API no devolvió una lista válida.</td>
