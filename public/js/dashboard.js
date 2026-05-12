@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function cargarDashboard() {
     try {
 
-        const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/dashboard");
+        const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/dashboard-stats");
 
         if (!res.ok) {
             throw new Error("Error en la respuesta del servidor");
