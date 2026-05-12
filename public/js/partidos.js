@@ -39,6 +39,9 @@ async function llenarCatalogos() {
             return;
         }
 
+        const dataEquipos = await resE.json();
+        const dataUmpires = await resU.json();
+        const dataLocaciones = await resL.json();
         const equipos = await resE.json();
         const umpires = await resU.json();
         const locaciones = await resL.json();
