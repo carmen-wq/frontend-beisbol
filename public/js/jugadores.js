@@ -80,12 +80,12 @@ async function cargarEquipos() {
 // Cargar jugadores
 async function cargarJugadores() {
   try {
-    const playerTableBody = document.getElementById("playerTableBody");
-    
+    //const playerTableBody = document.getElementById("playerTableBody");
+
     const res = await fetch("https://backend-rosario-123-hcd6ddhpf4caeveu.eastus-01.azurewebsites.net/api/jugadores");
     const data = await res.json();
 
-    const listaJugadores = data.jugadores; // Aseguramos que accedemos a la propiedad correcta
+    const listaJugadores = data; // Aseguramos que accedemos a la propiedad correcta
     console.log("Respuesta /jugadores:", listaJugadores);
 
     playerTableBody.innerHTML = "";
